@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Book Your Movie Tickets</h1>
+
+        <!-- Movie Selection -->
+        <div class="movie-selection">
+            <label for="movie">Select Movie:</label>
+            <select id="movie">
+                <option value="12|7:00 PM">Spider-Man: No Way Home ($12) - 7:00 PM</option>
+                <option value="10|5:30 PM">Frozen II ($10) - 5:30 PM</option>
+                <option value="15|9:00 PM">The Batman ($15) - 9:00 PM</option>
+                <option value="8|3:00 PM">Minions ($8) - 3:00 PM</option>
+            </select>
+        </div>
+
+        <!-- Ticket Selection -->
+        <div class="ticket-selection">
+            <p>Select Number of Tickets:</p>
+            <div class="ticket-category">
+                <label for="adults">Adults:</label>
+                <input type="number" id="adults" value="0" min="0">
+            </div>
+            <div class="ticket-category">
+                <label for="children">Children:</label>
+                <input type="number" id="children" value="0" min="0">
+            </div>
+            <div class="ticket-category">
+                <label for="seniors">Seniors:</label>
+                <input type="number" id="seniors" value="0" min="0">
+            </div>
+        </div>
+
+        <!-- Booking Summary -->
+        <div class="summary">
+            <p>Showtime: <span id="showtime"></span></p>
+            <p>Total Tickets: <span id="total-tickets">0</span></p>
+            <p>Total Price: $<span id="total-price">0</span></p>
+            <button id="book-now">Book Now</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
