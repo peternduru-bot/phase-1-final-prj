@@ -1,0 +1,155 @@
+{
+  "films": [
+    {
+      "id": 1,
+      "title": "The Saviour 3",
+      "runtime": 120,
+      "capacity": 50,
+      "showtime": "06:00PM",
+      "tickets_sold": 20,
+      "description": "Jason Statham returns for a high-octane action thriller.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZTU5ZWQyYjAt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Vice",
+      "runtime": 110,
+      "capacity": 40,
+      "showtime": "08:00PM",
+      "tickets_sold": 12,
+      "description": "A futuristic story of AI and human survival.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjE3NzQyNzAxMl5BMl5BanBnXkFtZTgwMjM0ODk1NjM@._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Back in Action",
+      "runtime": 100,
+      "capacity": 60,
+      "showtime": "07:30PM",
+      "tickets_sold": 25,
+      "description": "Jamie Foxx and Cameron Diaz star in this action-packed comeback.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTNlYmViZGQt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "John Wick",
+      "runtime": 130,
+      "capacity": 70,
+      "showtime": "09:00PM",
+      "tickets_sold": 68,
+      "description": "Keanu Reeves as the unstoppable assassin John Wick.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTc2NDY2OTYxOF5BMl5BanBnXkFtZTgwMTY2NTI2MzE@._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Furiosa: A Mad Max Saga",
+      "runtime": 140,
+      "capacity": 80,
+      "showtime": "05:00PM",
+      "tickets_sold": 40,
+      "description": "The prequel to Mad Max Fury Road.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2UwMWUxMTIt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Bad Boys: Ride or Die",
+      "runtime": 125,
+      "capacity": 65,
+      "showtime": "10:00PM",
+      "tickets_sold": 30,
+      "description": "Will Smith and Martin Lawrence return in another explosive ride.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjA1NDhiMmQt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Breakout",
+      "runtime": 105,
+      "capacity": 55,
+      "showtime": "04:30PM",
+      "tickets_sold": 10,
+      "description": "A daring prison escape goes wrong.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjFhZTcyYTkt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Last Action Hero",
+      "runtime": 115,
+      "capacity": 50,
+      "showtime": "07:00PM",
+      "tickets_sold": 45,
+      "description": "Arnold Schwarzenegger stars in this meta action-comedy.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMmQ1MDUxNjgt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 9,
+      "title": "The Russian Job",
+      "runtime": 95,
+      "capacity": 40,
+      "showtime": "06:15PM",
+      "tickets_sold": 20,
+      "description": "A dangerous heist set in Russia.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjYyOTFjNjgt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Martis",
+      "runtime": 110,
+      "capacity": 70,
+      "showtime": "08:45PM",
+      "tickets_sold": 15,
+      "description": "Jason Statham stars in another explosive action film.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzA5ZmU4M2Qt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Silent Rage",
+      "runtime": 105,
+      "capacity": 45,
+      "showtime": "05:30PM",
+      "tickets_sold": 18,
+      "description": "Chuck Norris takes on a near-unstoppable killer.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWMwZWYxMDIt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Expendables 4",
+      "runtime": 125,
+      "capacity": 80,
+      "showtime": "09:15PM",
+      "tickets_sold": 50,
+      "description": "An all-star cast returns for another explosive mission.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGRkZTQxZDQt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Commando 2",
+      "runtime": 115,
+      "capacity": 60,
+      "showtime": "07:45PM",
+      "tickets_sold": 35,
+      "description": "A rogue soldier takes on an entire cartel.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWZjY2QyYWYt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 14,
+      "title": "The Protector",
+      "runtime": 100,
+      "capacity": 55,
+      "showtime": "06:45PM",
+      "tickets_sold": 22,
+      "description": "Tony Jaa in a high-energy martial arts spectacle.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTg4NDI3ZTMt._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Edge of Vengeance",
+      "runtime": 120,
+      "capacity": 65,
+      "showtime": "08:30PM",
+      "tickets_sold": 28,
+      "description": "A retired soldier is pulled back into battle.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjViMWQyYWYt._V1_FMjpg_UX1000_.jpg"
+    }
+  ],
+  "tickets": []
+}
