@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>🐾 Adopt a Dog</title>
   <style>
   
@@ -65,10 +66,54 @@
     }
 
     /* DOG CARDS GRID */
+=======
+  <title>Adopt a Dog</title>
+
+    
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #e0f7fa;
+      padding: 20px;
+      color: #333;
+    }
+    h1 { margin-bottom: 20px; color: #00796b; }
+    h2 { margin-top: 30px; }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 450px;
+      margin: 0 auto 20px auto;
+    }
+    input[type="text"] {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      flex: 1;
+      margin-right: 10px;
+    }
+    button {
+      padding: 8px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #00796b;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background-color: #004d40; }
+
+>>>>>>> 32218ac6b08a07b6e33b18842e2a2e7a39fadcff
     .grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+<<<<<<< HEAD
       gap: 20px;
       margin: 20px 0;
     }
@@ -292,5 +337,115 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+=======
+      gap: 15px;
+      margin: 15px 0;
+    }
+    .dog-card {
+      width: 180px;
+      padding: 10px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .dog-card:hover { transform: scale(1.05); }
+    .dog-card img { width: 100%; border-radius: 8px; }
+    .dog-info { text-align: left; margin-top: 5px; font-size: 0.9rem; }
+  </style>
+</head>
+
+<body>
+  <h1>🐾 Adopt a Dog</h1>
+
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search dogs by breed...">
+    <button id="load-dogs">Show Dogs</button>
+  </div>
+
+  <h2>Available Dogs</h2>
+  <div id="dog-list" class="grid"></div>
+
+  <h2>Adopted Dogs</h2>
+  <div id="adopted-list" class="grid"></div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const dogList = document.getElementById("dog-list");
+      const adoptedList = document.getElementById("adopted-list");
+      const searchInput = document.getElementById("search");
+      const loadDogsBtn = document.getElementById("load-dogs");
+
+      let currentDogs = [];
+      let adoptedDogs = [];
+
+      async function fetchDogs() {
+        try {
+          const res = await fetch("https://dog.ceo/api/breeds/image/random/10");
+          const data = await res.json();
+          currentDogs = data.message.map(url => {
+            const parts = url.split('/');
+            const breed = parts[parts.length - 2];
+            const age = Math.floor(Math.random() * 10) + 1;
+            return { url, breed, age };
+          });
+          renderDogs(currentDogs);
+        } catch (err) {
+          console.error("Error fetching dogs:", err);
+        }
+      }
+
+      function renderDogs(dogs) {
+        dogList.innerHTML = "";
+        dogs.forEach(dog => {
+          const card = document.createElement("div");
+          card.className = "dog-card";
+          card.innerHTML = `
+            <img src="${dog.url}" alt="Dog">
+            <div class="dog-info">
+              <strong>Breed:</strong> ${dog.breed}<br>
+              <strong>Age:</strong> ${dog.age} years
+            </div>
+          `;
+          card.addEventListener("dblclick", () => {
+            if (!adoptedDogs.includes(dog)) {
+              adoptedDogs.push(dog);
+              renderAdopted(adoptedDogs);
+            }
+          });
+          dogList.appendChild(card);
+        });
+      }
+
+      function renderAdopted(dogs) {
+        adoptedList.innerHTML = "";
+        dogs.forEach(dog => {
+          const card = document.createElement("div");
+          card.className = "dog-card";
+          card.innerHTML = `
+            <img src="${dog.url}" alt="Dog">
+            <div class="dog-info">
+              <strong>Breed:</strong> ${dog.breed}<br>
+              <strong>Age:</strong> ${dog.age} years
+            </div>
+          `;
+          adoptedList.appendChild(card);
+        });
+      }
+
+      searchInput.addEventListener("input", e => {
+        const term = e.target.value.toLowerCase();
+        const filtered = currentDogs.filter(dog => dog.breed.toLowerCase().includes(term));
+        renderDogs(filtered);
+      });
+
+      loadDogsBtn.addEventListener("click", fetchDogs);
+
+      fetchDogs();
+    });
+  </script>
+>>>>>>> 32218ac6b08a07b6e33b18842e2a2e7a39fadcff
 </body>
 </html>
