@@ -2,158 +2,296 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Adopt a Dog</title>
-
-    
+  <title>🐾 Adopt a Dog</title>
   <style>
+    /* GENERAL STYLES */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      background: #e0f7fa;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
       padding: 20px;
       color: #333;
     }
-    h1 { margin-bottom: 20px; color: #00796b; }
-    h2 { margin-top: 30px; }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #1a237e;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #3949ab;
+      border-bottom: 3px solid #3949ab;
+      display: inline-block;
+      padding-bottom: 5px;
+      font-size: 1.5rem;
+    }
 
     .controls {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      max-width: 450px;
-      margin: 0 auto 20px auto;
+      max-width: 500px;
+      margin: 20px auto;
+      gap: 10px;
     }
+
     input[type="text"] {
-      padding: 8px 10px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 25px;
       border: 1px solid #ccc;
       font-size: 1rem;
       flex: 1;
-      margin-right: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
+
     button {
-      padding: 8px 15px;
+      padding: 12px 20px;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
-      background-color: #00796b;
+      border-radius: 25px;
+      background-color: #3949ab;
       color: white;
       cursor: pointer;
-      transition: background 0.2s;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
     }
-    button:hover { background-color: #004d40; }
 
+    button:hover {
+      background-color: #1a237e;
+      transform: scale(1.05);
+    }
+
+    /* DOG CARDS GRID */
     .grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      margin: 15px 0;
+      gap: 20px;
+      margin: 20px 0;
     }
+
     .dog-card {
-      width: 180px;
-      padding: 10px;
+      width: 220px;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: transform 0.2s;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .dog-card:hover { transform: scale(1.05); }
-    .dog-card img { width: 100%; border-radius: 8px; }
-    .dog-info { text-align: left; margin-top: 5px; font-size: 0.9rem; }
+
+    .dog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+
+    .dog-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .dog-info {
+      text-align: left;
+      padding: 10px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* BUTTONS INSIDE CARDS */
+    .dog-card button {
+      margin: 5px 10px 10px 10px;
+      padding: 8px 0;
+      width: calc(100% - 20px);
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .adopt-btn {
+      background-color: #43a047;
+    }
+
+    .adopt-btn:hover {
+      background-color: #2e7d32;
+    }
+
+    .return-btn {
+      background-color: #f4511e;
+    }
+
+    .return-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    .favorite-btn {
+      background-color: #ffca28;
+      color: #333;
+    }
+
+    .favorite-btn.favorited {
+      background-color: #fbc02d;
+      color: white;
+    }
+
+    .favorite-btn:hover {
+      background-color: #f9a825;
+    }
   </style>
 </head>
-
 <body>
-  <h1>🐾 Adopt a Dog</h1>
 
-  <div class="controls">
-    <input id="search" type="text" placeholder="Search dogs by breed...">
-    <button id="load-dogs">Show Dogs</button>
-  </div>
+<h1>🐶 Adopt a Dog</h1>
 
-  <h2>Available Dogs</h2>
-  <div id="dog-list" class="grid"></div>
+<div class="controls">
+  <input id="search" type="text" placeholder="Search dogs by breed...">
+  <button id="load-dogs">🔄 Show Dogs</button>
+</div>
 
-  <h2>Adopted Dogs</h2>
-  <div id="adopted-list" class="grid"></div>
+<h2>Available Dogs</h2>
+<div id="dog-list" class="grid"></div>
 
-  <script>
+<h2>Adopted Dogs</h2>
+<div id="adopted-list" class="grid"></div>
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const dogList = document.getElementById("dog-list");
-      const adoptedList = document.getElementById("adopted-list");
-      const searchInput = document.getElementById("search");
-      const loadDogsBtn = document.getElementById("load-dogs");
+<h2>Favorite Dogs</h2>
+<div id="favorites-list" class="grid"></div>
 
-      let currentDogs = [];
-      let adoptedDogs = [];
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const dogList = document.getElementById("dog-list");
+  const adoptedList = document.getElementById("adopted-list");
+  const favoritesList = document.getElementById("favorites-list");
+  const searchInput = document.getElementById("search");
+  const loadDogsBtn = document.getElementById("load-dogs");
 
-      async function fetchDogs() {
-        try {
-          const res = await fetch("https://dog.ceo/api/breeds/image/random/10");
-          const data = await res.json();
-          currentDogs = data.message.map(url => {
-            const parts = url.split('/');
-            const breed = parts[parts.length - 2];
-            const age = Math.floor(Math.random() * 10) + 1;
-            return { url, breed, age };
-          });
+  let currentDogs = [];
+  let adoptedDogs = [];
+  let favoriteDogs = [];
+
+  async function fetchDogs() {
+    try {
+      const res = await fetch("https://dog.ceo/api/breeds/image/random/10");
+      const data = await res.json();
+      currentDogs = data.message.map(url => {
+        const parts = url.split('/');
+        const breed = parts[parts.length - 2];
+        const age = Math.floor(Math.random() * 10) + 1;
+        return { url, breed, age };
+      });
+      renderDogs(currentDogs);
+    } catch (err) {
+      console.error("Error fetching dogs:", err);
+    }
+  }
+
+  function renderDogs(dogs) {
+    dogList.innerHTML = "";
+    dogs.forEach(dog => {
+      const card = document.createElement("div");
+      card.className = "dog-card";
+      card.innerHTML = `
+        <img src="${dog.url}" alt="Dog">
+        <div class="dog-info">
+          <strong>Breed:</strong> ${dog.breed}<br>
+          <strong>Age:</strong> ${dog.age} years
+        </div>
+        <button class="adopt-btn">Adopt 🐾</button>
+        <button class="favorite-btn">${favoriteDogs.includes(dog) ? '❤️ Favorited' : '🤍 Favorite'}</button>
+      `;
+
+      card.querySelector(".adopt-btn").addEventListener("click", () => {
+        if (!adoptedDogs.includes(dog)) {
+          adoptedDogs.push(dog);
+          currentDogs = currentDogs.filter(d => d !== dog);
           renderDogs(currentDogs);
-        } catch (err) {
-          console.error("Error fetching dogs:", err);
+          renderAdopted(adoptedDogs);
         }
-      }
-
-      function renderDogs(dogs) {
-        dogList.innerHTML = "";
-        dogs.forEach(dog => {
-          const card = document.createElement("div");
-          card.className = "dog-card";
-          card.innerHTML = `
-            <img src="${dog.url}" alt="Dog">
-            <div class="dog-info">
-              <strong>Breed:</strong> ${dog.breed}<br>
-              <strong>Age:</strong> ${dog.age} years
-            </div>
-          `;
-          card.addEventListener("dblclick", () => {
-            if (!adoptedDogs.includes(dog)) {
-              adoptedDogs.push(dog);
-              renderAdopted(adoptedDogs);
-            }
-          });
-          dogList.appendChild(card);
-        });
-      }
-
-      function renderAdopted(dogs) {
-        adoptedList.innerHTML = "";
-        dogs.forEach(dog => {
-          const card = document.createElement("div");
-          card.className = "dog-card";
-          card.innerHTML = `
-            <img src="${dog.url}" alt="Dog">
-            <div class="dog-info">
-              <strong>Breed:</strong> ${dog.breed}<br>
-              <strong>Age:</strong> ${dog.age} years
-            </div>
-          `;
-          adoptedList.appendChild(card);
-        });
-      }
-
-      searchInput.addEventListener("input", e => {
-        const term = e.target.value.toLowerCase();
-        const filtered = currentDogs.filter(dog => dog.breed.toLowerCase().includes(term));
-        renderDogs(filtered);
       });
 
-      loadDogsBtn.addEventListener("click", fetchDogs);
+      card.querySelector(".favorite-btn").addEventListener("click", (e) => {
+        if (!favoriteDogs.includes(dog)) {
+          favoriteDogs.push(dog);
+        } else {
+          favoriteDogs = favoriteDogs.filter(d => d !== dog);
+        }
+        renderFavorites(favoriteDogs);
+        renderDogs(currentDogs);
+        renderAdopted(adoptedDogs);
+      });
 
-      fetchDogs();
+      dogList.appendChild(card);
     });
-  </script>
+  }
+
+  function renderAdopted(dogs) {
+    adoptedList.innerHTML = "";
+    dogs.forEach(dog => {
+      const card = document.createElement("div");
+      card.className = "dog-card";
+      card.innerHTML = `
+        <img src="${dog.url}" alt="Dog">
+        <div class="dog-info">
+          <strong>Breed:</strong> ${dog.breed}<br>
+          <strong>Age:</strong> ${dog.age} years
+        </div>
+        <button class="return-btn">Return ↩️</button>
+        <button class="favorite-btn">${favoriteDogs.includes(dog) ? '❤️ Favorited' : '🤍 Favorite'}</button>
+      `;
+
+      card.querySelector(".return-btn").addEventListener("click", () => {
+        adoptedDogs = adoptedDogs.filter(d => d !== dog);
+        currentDogs.push(dog);
+        renderDogs(currentDogs);
+        renderAdopted(adoptedDogs);
+      });
+
+      card.querySelector(".favorite-btn").addEventListener("click", () => {
+        if (!favoriteDogs.includes(dog)) {
+          favoriteDogs.push(dog);
+        } else {
+          favoriteDogs = favoriteDogs.filter(d => d !== dog);
+        }
+        renderFavorites(favoriteDogs);
+        renderDogs(currentDogs);
+        renderAdopted(adoptedDogs);
+      });
+
+      adoptedList.appendChild(card);
+    });
+  }
+
+  function renderFavorites(dogs) {
+    favoritesList.innerHTML = "";
+    dogs.forEach(dog => {
+      const card = document.createElement("div");
+      card.className = "dog-card";
+      card.innerHTML = `
+        <img src="${dog.url}" alt="Dog">
+        <div class="dog-info">
+          <strong>Breed:</strong> ${dog.breed}<br>
+          <strong>Age:</strong> ${dog.age} years
+        </div>
+      `;
+      favoritesList.appendChild(card);
+    });
+  }
+
+  searchInput.addEventListener("input", e => {
+    const term = e.target.value.toLowerCase();
+    const filtered = currentDogs.filter(dog => dog.breed.toLowerCase().includes(term));
+    renderDogs(filtered);
+  });
+
+  loadDogsBtn.addEventListener("click", fetchDogs);
+
+  fetchDogs();
+});
+</script>
+
 </body>
 </html>
